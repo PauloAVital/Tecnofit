@@ -55,16 +55,6 @@ CREATE TABLE `migrations` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `migrations`
---
-
-LOCK TABLES `migrations` WRITE;
-/*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2019_08_19_000000_create_failed_jobs_table',1),(4,'2020_09_20_212844_create_control_tags_table',1);
-/*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `password_resets`
 --
 
