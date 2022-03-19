@@ -22,7 +22,7 @@ class databaseseedsUser extends Seeder
 
         DB::table('users')->insert([
             'id' => 2,
-            'name' => 'João',
+            'name' => 'Joao',
             'email' => 'joao@gmail.com',
             'email_verified_at' => null,
             'password' => '$2y$10$3ZgZEHfhc5bESMWifZFbdeWAvI2uO6zcLS3WsetDi7hkPizh6GRzy'
