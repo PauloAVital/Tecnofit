@@ -1,0 +1,316 @@
+{
+	"info": {
+		"_postman_id": "0e7a921c-bb26-4497-8624-ffd5a9aba2cf",
+		"name": "Tecnofit",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "LISTA Usuario",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/User",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"User"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "INSERT User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Usuario para excluir\",\n    \"email\": \"pauloavital777@gmail.com\",\n    \"password\": \"123456789\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/User",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"User"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "8361",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "ROUPA MOLETOM COM CAPUZ MESCLA",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE User",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Usuario para excluir 2222\",\n    \"email\": \"pauloavital777@gmail.com\",\n    \"password\": \"123456789\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/User/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"User",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETAR User",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/User/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"User",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LISTA Movement",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/Movement/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"Movement",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "INSERT Movement",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"user_id\": null,\n        \"movement_id\": 1,\n        \"value\": 100,\n        \"date\": \"2022-01-01 00:00:00\"\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/PersonalRecord",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"PersonalRecord"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "8361",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "ROUPA MOLETOM COM CAPUZ MESCLA",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE Movement",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Movement para excluir 2222\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/Movement/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"Movement",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETAR Movement",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/Movement/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"Movement",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LISTA PersonalRecord",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/PersonalRecord/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"PersonalRecord",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "INSERT PersonalRecord",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"user_id\": 3,\n        \"movement_id\": 2,\n        \"value\": 200,\n        \"date\": \"2022-01-01 00:00:00\"\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/PersonalRecord",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"PersonalRecord"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "8361",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "ROUPA MOLETOM COM CAPUZ MESCLA",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ranking",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/ranking",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"ranking"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

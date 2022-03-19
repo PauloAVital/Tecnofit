@@ -4,26 +4,46 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\User;
+use App\Models\Movement;
 use Illuminate\Support\Facades\Validator;
 use Exception;
 
-class UserController extends Controller
+class MovementController extends Controller
 {
-    public function __construct(User $user,
+    public function __construct(Movement $movement,
                                 Request $Request)
     {
-        $this->user = $user;
+        $this->movement = $movement;
         $this->request = $Request;
     }
-
+    
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $data = User::all();
-        return response()->json($data);
+        try {
+            $data = $this->movement->all();
+
+            if(!$data->isEmpty()) {
+                return response()->json($data);
+            } else {
+                return response()->json(['error'=> 'Nada Encontrado', 404]);
+            }
+
+        } catch (Exception $e) {
+            return response()->json(['error'=> $e->getMessage(), 400]);
+        }
     }
 
-   
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         try {
@@ -43,49 +63,54 @@ class UserController extends Controller
             }
             if (($retornoKeys == '') and
                 ($retornoValidate == '')) {
-                    $dataForm = array(
-                        "name" => $request->name,
-                        "email" => $request->email,
-                        "password" => bcrypt($request->password)
-                    );
-            
-                    $data = $this->user->create($dataForm);
-                    
-                    return response()->json($data, 200);
+                    $data = $this->movement->create($dataForm);        
+                    return response()->json($data, 200); 
             }
         } catch (Exception $e) {
-            return response()->json([
-                "erros" => $e->getMessage()
-            ]);
+            return response()->json(['error'=> $e->getMessage(), 400]);
         }
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function show($id)
     {
         try {
-            if (!$data = $this->user->find($id)) {
+            if (!$data = $this->movement->find($id)) {
                 return response()->json([
-                    'description'=> 'Nada Encontrado',
-                     'error' => 404
-                    ]);
+                    'error'=> 'Nada Encontrado', 
+                    404
+                ]);
             } else {
                 return response()->json($data);
             }
         } catch (Exception $e) {
             return response()->json([
-                "erros" => $e->getMessage()
-            ]);
+                'error'=> $e->getMessage(),
+                 400
+                ]);
         }
     }
-   
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, $id)
     {
         try {
-            if (!$data = $this->user->find($id)){
+            if (!$data = $this->movement->find($id)){
                 return response()->json([
-                    'error'=> 'Nada Encontrado',
-                     404
-                    ]);
+                    'error'=> 'Nada Encontrado', 
+                    404
+                ]);
             } else {
                 $dataForm =  $request->all();
                 $dataForm = array_unique($dataForm);
@@ -103,30 +128,34 @@ class UserController extends Controller
                 }
                 if (($retornoKeys == '') and
                     ($retornoValidate == '')) {
-                        $this->validate($request, $this->user->rules());
-            
                         $dataForm = array(
-                            "name" => $request->name,
-                            "email" => $request->email,
-                            "password" => bcrypt($request->password)
+                            "name" => $request->name
                         );
             
                         $data->update($dataForm);
                         
-                        return response()->json($data);
-                    }
+                        return response()->json($data); 
+                }
             }
+            
         } catch (Exception $e) {
             return response()->json([
-                "erros" => $e->getMessage()
+                'error'=> $e->getMessage(), 
+                400
             ]);
         }
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function destroy($id)
     {
         try {
-            if (!$data = $this->user->find($id)){
+            if (!$data = $this->movement->find($id)){
                 return response()->json([
                     'error'=> 'Nada Encontrado', 
                     404
@@ -145,6 +174,7 @@ class UserController extends Controller
         }
     }
 
+
     /**
      * Função que valida dados para cadastro de usuario.
      *
@@ -154,19 +184,14 @@ class UserController extends Controller
 
         try {
             $messages = [
-                'name.required' => 'informe o nome',
-                'password.required' => 'informe o password',
-                'email.required' => 'informe o email',
-                'email.unique' => 'email duplicado',
+                'name.required' => 'informe o nome'
             ];
     
             $rules = [
-                'name' => 'required',
-                'email' => 'required',
-                'password' => 'required'
+                'name' => 'required'
             ];
     
-            $regras = ($id != null) ? $rules : $this->user->rules();
+            $regras = ($id != null) ? $rules : $this->movement->rules();
             
             $validator = Validator::make($dataForm, $regras, $messages);
 
@@ -191,29 +216,16 @@ class UserController extends Controller
      */
     private function validateKeys($dataForm, $id = null) {
 
-        if(count(array_keys($dataForm)) == 3) {
+        if(count(array_keys($dataForm)) == 1) {
             if (!array_key_exists('name', $dataForm)){
                 return response()->json([
-                    'description'=> 'Falta a chave [name]',
-                     'error' => 404
-                    ]);
-            }
-    
-            if (!array_key_exists('email', $dataForm)){
-                return response()->json([
-                    'description'=> 'Falta a chave [email]',
+                    'description'=> 'Falta a chave [name]', 
                     'error' => 404
                 ]);
             }
-    
-            if (!array_key_exists('password', $dataForm)){
-                return response()->json(['description'=> 'Falta a chave [password]',
-                'error' => 404
-            ]);
-            }
         } else {
             return response()->json([
-                'description'=> 'Quantidade de chaves Incorreta',
+                'description'=> 'Quantidade de chaves Incorreta', 
                 'error' => 404
             ]);
         }
