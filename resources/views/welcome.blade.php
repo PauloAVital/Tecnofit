@@ -83,7 +83,7 @@
             <div class="content">
                 <div class="title m-b-md">
                 <h3><b><u>Tecnofit</u></b></h3><hr>
-                    <img class="card-img-top" src="img/tecnofit-logo.png" alt="dashboard">
+                    <img class="card-img-top" src="img/logo.gif" alt="dashboard">
                 </div>
 
                 <div class="links black">
