@@ -23,16 +23,41 @@
                     <div class="card card-titles">
                         <img class="card-img-top" src="img/api.jpg" alt="dashboard">
                     </div>
-                    <b>End-point para inserção de dados</b>
-                    <p class="card-text">VERBO POST.</p>
-                    <hr>
-                    <b>End-point para consulta de dados</b>
-                    <p class="card-text">VERBO GET.</p>
+                    <b>End-points</b>
+                    <a href="{{ url('/Collection/Tecnofit.postman_collection.json') }}" target="_blank">Collection</a>
                 </div>
                 
             </div>
             
         </div>
     </div>
+    <div class="card-deck">
+        <?php
+        $i = 0;
+        foreach($ranking as $rankings) {
+            $movement = '';
+            if (isset($ranking[$i]["ranking"][$i]["movement"])){
+                $movement = $ranking[$i]["ranking"][$i]["movement"];
+            }
+            foreach($rankings  as $key => $personalRecord) {
+                
+                echo '<div class="card">
+                        <h4 class="card-header">'.$movement.'</h4><hr>';
+                foreach($personalRecord as $personalRecords) {
+                    echo '<div class="card-body">
+                            <h5 class="card-title">Record Pessoal</h5>
+                            <ul>'.$personalRecords['user'].'
+                                <li>Position: <b>'.$personalRecords['position'].'</b></li>
+                                <li>Value: <b>'.$personalRecords['value'].'</b></li>
+                                <li>Date: <b>'.$personalRecords['date'].'</b></li>
+                                <li>movement_id: <b>'.$personalRecords['movement_id'].'</b></li>
+                            </ul></div>';
+                }
+                echo '</div>';
+                $i++;
+            }           
+        }
+        ?>       
+    </div>   
 </div>
 @endsection

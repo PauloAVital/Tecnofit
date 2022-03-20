@@ -291,7 +291,7 @@ class PersonalRecordController extends Controller
         return $ranking;
     }
 
-    public function treatRanking($data){
+    private function treatRanking($data){
         $dataTreat = [];
         $dataRet = [];
         $position = 1;

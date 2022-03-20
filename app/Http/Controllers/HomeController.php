@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use GuzzleHttp\Client;
+use App\Http\Controllers\PersonalController;
 use DataTables;
 use App\User;
 
@@ -19,6 +19,7 @@ class HomeController extends Controller
     {
         $this->objuser = new User();
         $this->middleware('auth');
+        $this->personal = new PersonalController();
     }
 
     /**
@@ -27,17 +28,9 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {        
-        return view('home');
+    {    
+        $ranking =  $this->personal->ranking();
+        return view('home', compact('ranking'));
     }
-
-    public function search()
-    {      
-        //return view('admin.pages.tags.index', compact('teste2'));
-        $users = $this->objuser->all();
-        //dd($users);
-        return view('admin.pages.search.index', compact('users'));
-    }
-
     
 }
